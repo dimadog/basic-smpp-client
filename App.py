@@ -15,38 +15,16 @@ from libs.smpplib import client, exceptions
 from libs.smpplib import gsm
 from libs.smpplib import consts
 
+
 class App(tk.Tk):
     def __init__(self):
         super().__init__()
-
-        self.title("basic smpp client)
+        
+        self.title("basic smpp client")
         self.geometry("1050x375")
         self.resizable(True, True)
         #self.iconphoto(False, tk.PhotoImage(file="assets/title_icon.png", master = self))
 
-        container = tk.Frame(self, bg="#8AA7A9")
-        container.pack(side="top", fill="both", expand = True)
-        container.grid_rowconfigure(0, weight=1)
-        container.grid_columnconfigure(0, weight=1)
-
-        self.frames = {}
-        self.HomePage = HomePage
-
-        for F in {HomePage}:
-            frame = F(self, container)
-            self.frames[F] = frame
-            frame.grid(row=0, column=0, sticky=NSEW)    
-        self.show_frame(HomePage)
-
-    def show_frame(self, cont):
-        frame = self.frames[cont]
-        frame.tkraise()                         ## This line will put the frame on front
- 
-class HomePage(tk.Frame):
-    def __init__(self, parent, container):
-        super().__init__(container)
-
-        #logger_path = os.path.dirname(os.path.realpath(__file__))+'\\logs\\smpp_client.log'
         logger_path = os.path.dirname(os.path.realpath(__file__))+'\\logs\\'+datetime.now().strftime("%d%m%Y-%H_%M")+'.log'
         print(logger_path)
         logger_handler = RotatingFileHandler(
@@ -299,7 +277,7 @@ class HomePage(tk.Frame):
         SenderNPI_Combox.grid(row=4, column=1, padx=(0,120))
         SenderNPI_Combox.current(1)
         Sender_Entry = tk.Entry(self, width=25 )
-        Sender_Entry.insert(END , '6148')
+        Sender_Entry.insert(END , '12345')
         Sender_Entry.grid(sticky="E", row=4,  column=1, pady=1 , padx = 3)
 
         #Receiver(TON + NPI) Label + Combox + Entry
@@ -322,7 +300,7 @@ class HomePage(tk.Frame):
         ReceiverNPI_Combox.grid(row=5, column=1, padx=(0,120))
         ReceiverNPI_Combox.current(1)
         Receiver_Entry = tk.Entry(self, width=25,  )
-        Receiver_Entry.insert(END , '1234567890')
+        Receiver_Entry.insert(END , '12345')
         Receiver_Entry.grid(sticky="E", row=5,  column=1, pady=1 , padx = 3)
 
         #MessageLabel + MessageScrolledText
