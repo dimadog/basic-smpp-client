@@ -19,23 +19,19 @@ class App(tk.Tk):
     def __init__(self):
         super().__init__()
 
-        ## Setting up Initial Things
-        self.title("SMPP Client V1905")
+        self.title("basic smpp client)
         self.geometry("1050x375")
         self.resizable(True, True)
-        self.iconphoto(False, tk.PhotoImage(file="assets/title_icon.png", master = self))
-    
-        ## Creating a container
+        #self.iconphoto(False, tk.PhotoImage(file="assets/title_icon.png", master = self))
+
         container = tk.Frame(self, bg="#8AA7A9")
         container.pack(side="top", fill="both", expand = True)
         container.grid_rowconfigure(0, weight=1)
         container.grid_columnconfigure(0, weight=1)
 
-        ## Initialize Frames
         self.frames = {}
         self.HomePage = HomePage
-        
-        ## Defining Frames and Packing it
+
         for F in {HomePage}:
             frame = F(self, container)
             self.frames[F] = frame
@@ -246,7 +242,7 @@ class HomePage(tk.Frame):
             self,
             width = 37,
             state = 'readonly',
-            values= ["172.24.224.171:20510", "172.17.232.12:1900" , "172.24.81.54:20510"]
+            values= ["10.10.10.10:8888", "10.10.10.10:8888" , "10.10.10.10:8888"]
         )
         Server_Combox.grid(sticky="EW",row=2 , column=1, pady=3, padx=3)
         Server_Combox.current(0)
@@ -326,7 +322,7 @@ class HomePage(tk.Frame):
         ReceiverNPI_Combox.grid(row=5, column=1, padx=(0,120))
         ReceiverNPI_Combox.current(1)
         Receiver_Entry = tk.Entry(self, width=25,  )
-        Receiver_Entry.insert(END , '375292087957')
+        Receiver_Entry.insert(END , '1234567890')
         Receiver_Entry.grid(sticky="E", row=5,  column=1, pady=1 , padx = 3)
 
         #MessageLabel + MessageScrolledText
